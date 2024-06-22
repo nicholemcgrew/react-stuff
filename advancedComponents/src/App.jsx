@@ -1,6 +1,46 @@
+import { useState, useEffect } from "react"
+import { User } from "./components/User"
 
+function App() {
+	const [users, setUsers] = useState([])
+	const [loading, setLoading] = useState(true)
+	// const [error, setError] = useState()
 
+	useEffect(() => {
+		setLoading(true)
 
+		const controller = new AbortController()
+		fetch("https://jsonplaceholder.typicode.com/users", {
+			signal: controller.signal,
+		})
+			.then((res) => res.json())
+			.then(setUsers)
+			.finally(() => {
+				setLoading(false)
+			})
+
+		return () => {
+			controller.abort()
+		}
+	}, [])
+
+	return (
+		<>
+			<h1>User List</h1>
+			{loading ? (
+				<h2>Loading...</h2>
+			) : (
+				<ul>
+					{users.map((user) => {
+						return <User key={user.id} {...user} />
+					})}
+				</ul>
+			)}
+		</>
+	)
+}
+
+export default App
 
 // import { useState } from "react"
 
