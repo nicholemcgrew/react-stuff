@@ -1,9 +1,9 @@
 import { useContext, useRef } from "react"
-import { TodoContext } from "../App"
+import { TodoContext } from "../../App"
 
 export function NewTodoForm() {
 	const nameRef = useRef()
-	const {addNewTodo} = useContext(TodoContext)
+	const { addNewTodo } = useContext(TodoContext)
 
 	function handleSubmit(e) {
 		e.preventDefault()
