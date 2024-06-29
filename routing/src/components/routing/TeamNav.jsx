@@ -1,0 +1,20 @@
+import { Link, useLoaderData } from "react-router-dom"
+// import teamMembers from "./teamMembers.json"
+
+export function TeamNav() {
+	const teamMembers = useLoaderData()
+	return (
+		<nav>
+			<ul>
+				{teamMembers.map((member) => (
+					<li key={member.id}>
+						<Link to={member.id.toString()}>Team - {member.name}</Link>
+					</li>
+				))}
+				<li>
+					<Link to="new">New Member</Link>
+				</li>
+			</ul>
+		</nav>
+	)
+}
