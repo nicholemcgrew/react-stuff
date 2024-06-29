@@ -134,7 +134,7 @@
 // }
 
 // function aToO<T>(array: [string, T][]) {
-//     const obj: { 
+//     const obj: {
 //         [index: string]: T}
 
 //     array.forEach(([key, value]) => {
@@ -152,13 +152,31 @@
 
 // const obj = aToO(arr)
 
-async function wait(duration: number): Promise<string> {
-    // return new Promise<string>(resolve => {
-    //     setTimeout(() => resolve("Hi"), duration)
-    // })
-    return await fetch('sdkj')
+// async function wait(duration: number): Promise<string> {
+//     // return new Promise<string>(resolve => {
+//     //     setTimeout(() => resolve("Hi"), duration)
+//     // })
+//     return await fetch('sdkj')
+// }
+
+// wait(1000).then(value => {
+//     console.log(value.json())
+// })
+
+type Todo = {
+	id: string
+	name: string
+	completed: boolean
 }
 
-wait(1000).then(value => {
-    console.log(value.json())
-})
+// type NewTodo = Pick<Todo, 'name' | 'status' | 'completed'>
+type NewTodo = Omit<Todo, 'id'>
+
+function saveTodo(todo: NewTodo): Todo {
+	return { ...(todo, id: crypto.randomUUID()) }
+}
+
+function renderTodo(todo: Todo) {
+	const div = document.createElement("div")
+	div.id = todo.id
+}
