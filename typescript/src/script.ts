@@ -133,21 +133,32 @@
 //     isError: false,
 // }
 
-function aToO<T>(array: [string, T][]) {
-    const obj: { 
-        [index: string]: T}
+// function aToO<T>(array: [string, T][]) {
+//     const obj: { 
+//         [index: string]: T}
 
-    array.forEach(([key, value]) => {
-        obj[key] = value
-    })
+//     array.forEach(([key, value]) => {
+//         obj[key] = value
+//     })
 
-    return obj
+//     return obj
+// }
+
+// const arr: [string, number | boolean][] = [
+// 	["keyOne", 1],
+// 	["keyTwo", 2],
+// 	["keyTwo", true],
+// ]
+
+// const obj = aToO(arr)
+
+async function wait(duration: number): Promise<string> {
+    // return new Promise<string>(resolve => {
+    //     setTimeout(() => resolve("Hi"), duration)
+    // })
+    return await fetch('sdkj')
 }
 
-const arr: [string, number | boolean][] = [
-	["keyOne", 1],
-	["keyTwo", 2],
-	["keyTwo", true],
-]
-
-const obj = aToO(arr)
+wait(1000).then(value => {
+    console.log(value.json())
+})
