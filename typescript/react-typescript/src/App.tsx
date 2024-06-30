@@ -1,7 +1,14 @@
+import { List } from "./components/genericComponents/List";
 
 export default function App() {
-
-	return (
-		
-	)
+  return (
+    <List<{id: number; name: string; age: number}>
+    items={[
+      {id: 1, name: "Kyle"},
+      {id: 2, name: "Sally"},
+    ]}
+    getKey={item => item.id}
+    renderItem={item => <div>{item.name}</div>}
+    />
+  )
 }
