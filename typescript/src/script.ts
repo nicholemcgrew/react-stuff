@@ -163,20 +163,43 @@
 //     console.log(value.json())
 // })
 
+// type Todo = {
+// 	id: string
+// 	name: string
+// 	completed: boolean
+// }
+
+// // type NewTodo = Pick<Todo, 'name' | 'status' | 'completed'>
+// type NewTodo = Omit<Todo, 'id'>
+
+// function saveTodo(todo: NewTodo): Todo {
+// 	return { ...(todo, id: crypto.randomUUID()) }
+// }
+
+// function renderTodo(todo: Todo) {
+// 	const div = document.createElement("div")
+// 	div.id = todo.id
+// }
+
+
 type Todo = {
-	id: string
-	name: string
-	completed: boolean
+    title?: string
+    completed: boolean
+    address?:
+{
+    street?: string
+}}
+
+// type FormTodo = Partial<Todo>
+type FormTodo = Required<Pick<Todo, 'title'>> & Omit<Todo, 'title'>
+
+const todo: FormTodo = {
+    completed: true, 
+    title: 'ekasdj'
 }
 
-// type NewTodo = Pick<Todo, 'name' | 'status' | 'completed'>
-type NewTodo = Omit<Todo, 'id'>
-
-function saveTodo(todo: NewTodo): Todo {
-	return { ...(todo, id: crypto.randomUUID()) }
+function checkLength(a: string, b: number) {
+    return a.length < b.length
 }
 
-function renderTodo(todo: Todo) {
-	const div = document.createElement("div")
-	div.id = todo.id
-}
+type ReturnOfLengthCheck = ReturnType<typeof checkLength>
